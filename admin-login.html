@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - RSE KYC Portal</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .admin-login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+        
+        .admin-login-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .admin-login-header {
+            background-color: #0D8A3E;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .admin-login-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .admin-login-body {
+            padding: 2rem;
+        }
+        
+        .admin-login-footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .admin-login-footer a {
+            color: #0D8A3E;
+            text-decoration: none;
+        }
+        
+        .admin-login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #0D8A3E;
+            box-shadow: 0 0 0 3px rgba(13, 138, 62, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #0D8A3E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn:hover {
+            background-color: #076e30;
+        }
+        
+        .error-message {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-login-header">
+                <h1><i class="fas fa-shield-alt"></i> RSE KYC Admin Portal</h1>
+                <p>Secure administrator access</p>
+            </div>
+            
+            <div class="admin-login-body">
+                <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message"></div>
+                    
+                    <button type="submit" class="btn">Login to Admin Panel</button>
+                </form>
+            </div>
+            
+            <div class="admin-login-footer">
+                <p>Return to <a href="index.html">Main Site</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Admin login handler
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Clear previous error messages
+            errorMessage.textContent = '';
+            
+            // Simple admin authentication for demo purposes
+            // In production, this would be a secure server-side authentication
+            if (username === 'admin' && password === 'rse2024') {
+                // Set admin session
+                localStorage.setItem('adminSession', JSON.stringify({
+                    isAdmin: true,
+                    username: 'admin',
+                    loginTime: new Date().toISOString()
+                }));
+                
+                // Redirect to admin dashboard
+                window.location.href = 'admin.html';
+            } else {
+                // Show error message
+                errorMessage.textContent = 'Invalid username or password. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
