@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Guide - RSE KYC Portal</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .guide-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .step {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        .step h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .code-block {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <header>
+            <h1>🚀 RSE KYC Portal - Deployment Guide</h1>
+            <p>Complete guide for deploying your KYC system to production</p>
+        </header>
+
+        <div class="step">
+            <h3>📋 Pre-Deployment Checklist</h3>
+            <ul>
+                <li>✅ All team members have tested their components</li>
+                <li>✅ Code has been merged to main branch</li>
+                <li>✅ All files are properly organized</li>
+                <li>✅ No console errors in browser</li>
+                <li>✅ Responsive design tested on mobile devices</li>
+                <li>✅ All forms validate correctly</li>
+                <li>✅ Admin dashboard functions properly</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>🌐 Option 1: GitHub Pages Deployment</h3>
+            <p>The easiest way to deploy your static website for free.</p>
+            
+            <h4>Step 1: Prepare Repository</h4>
+            <div class="code-block">
+# Ensure all files are in the root directory
+git add .
+git commit -m "Prepare for GitHub Pages deployment"
+git push origin main
+            </div>
+
+            <h4>Step 2: Enable GitHub Pages</h4>
+            <ol>
+                <li>Go to your repository on GitHub</li>
+                <li>Click on "Settings" tab</li>
+                <li>Scroll down to "Pages" section</li>
+                <li>Under "Source", select "Deploy from a branch"</li>
+                <li>Select "main" branch and "/ (root)" folder</li>
+                <li>Click "Save"</li>
+            </ol>
+
+            <div class="success">
+                <strong>Success!</strong> Your site will be available at: 
+                <code>https://[username].github.io/[repository-name]</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>🔧 Option 2: Netlify Deployment</h3>
+            <p>More advanced deployment with custom domains and form handling.</p>
+            
+            <h4>Step 1: Create Netlify Account</h4>
+            <ol>
+                <li>Go to <a href="https://netlify.com" target="_blank">netlify.com</a></li>
+                <li>Sign up with your GitHub account</li>
+                <li>Click "New site from Git"</li>
+                <li>Connect your GitHub repository</li>
+                <li>Deploy with default settings</li>
+            </ol>
+
+            <h4>Step 2: Configure Build Settings</h4>
+            <div class="code-block">
+# netlify.toml (create this file in your root directory)
+[build]
+  publish = "."
+  command = "echo 'No build command needed for static site'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>☁️ Option 3: Vercel Deployment</h3>
+            <p>Fast and reliable deployment platform.</p>
+            
+            <h4>Quick Deploy</h4>
+            <ol>
+                <li>Go to <a href="https://vercel.com" target="_blank">vercel.com</a></li>
+                <li>Sign up with GitHub</li>
+                <li>Click "New Project"</li>
+                <li>Import your repository</li>
+                <li>Deploy with default settings</li>
+            </ol>
+
+            <div class="code-block">
+# vercel.json (optional configuration)
+{
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>🔒 Security Considerations</h3>
+            <div class="warning">
+                <strong>Important:</strong> This is a demo application. For production use, implement these security measures:
+            </div>
+            
+            <ul>
+                <li><strong>HTTPS:</strong> Ensure all traffic is encrypted</li>
+                <li><strong>Authentication:</strong> Implement proper server-side authentication</li>
+                <li><strong>Data Storage:</strong> Use secure databases instead of localStorage</li>
+                <li><strong>File Uploads:</strong> Implement server-side file validation and storage</li>
+                <li><strong>API Security:</strong> Add rate limiting and input validation</li>
+                <li><strong>GDPR Compliance:</strong> Implement data protection measures</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>📊 Production Enhancements</h3>
+            <p>Features to add for a production-ready system:</p>
+            
+            <h4>Backend Integration</h4>
+            <ul>
+                <li>Node.js/Express server for API endpoints</li>
+                <li>Database integration (PostgreSQL/MongoDB)</li>
+                <li>File upload to cloud storage (AWS S3/Cloudinary)</li>
+                <li>Email service integration (SendGrid/Mailgun)</li>
+                <li>PDF generation server-side</li>
+            </ul>
+
+            <h4>Additional Features</h4>
+            <ul>
+                <li>Two-factor authentication (2FA)</li>
+                <li>Document OCR for automatic data extraction</li>
+                <li>Real-time notifications</li>
+                <li>Audit logging</li>
+                <li>Advanced reporting and analytics</li>
+                <li>Multi-language support</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>🧪 Testing Your Deployment</h3>
+            <p>Verify everything works correctly after deployment:</p>
+            
+            <h4>Functional Testing</h4>
+            <ol>
+                <li>Test user registration and login</li>
+                <li>Complete the entire KYC form</li>
+                <li>Test file uploads</li>
+                <li>Verify admin dashboard functionality</li>
+                <li>Test on different devices and browsers</li>
+                <li>Check all links and navigation</li>
+            </ol>
+
+            <h4>Performance Testing</h4>
+            <ul>
+                <li>Use Google PageSpeed Insights</li>
+                <li>Test loading times</li>
+                <li>Verify mobile responsiveness</li>
+                <li>Check accessibility with screen readers</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>📝 Documentation for Submission</h3>
+            <p>Create these documents for your assignment submission:</p>
+            
+            <h4>README.md</h4>
+            <div class="code-block">
+# RSE KYC Portal
+
+## Team Members
+- [Name 1] - Authentication & Landing System
+- [Name 2] - KYC Forms (Steps 1-2)
+- [Name 3] - KYC Forms (Steps 3-4) & PDF Generation
+- [Name 4] - Admin Dashboard & Management
+
+## Features
+- User registration and authentication
+- Multi-step KYC form with validation
+- File upload for identity documents
+- Admin dashboard for application management
+- PDF generation and email notifications
+- Responsive design for all devices
+
+## Technologies Used
+- HTML5, CSS3, JavaScript (ES6+)
+- Local Storage for data persistence
+- Web APIs for file handling and validation
+
+## How to Run
+1. Clone the repository
+2. Open `index.html` in a web browser
+3. For admin access, go to `admin.html`
+
+## Live Demo
+[Your deployed URL here]
+
+## Project Structure
+[Describe your file organization]
+            </div>
+
+            <h4>User Manual</h4>
+            <p>Create a simple user guide explaining:</p>
+            <ul>
+                <li>How to register and login</li>
+                <li>How to complete the KYC form</li>
+                <li>How to upload documents</li>
+                <li>How to check application status</li>
+                <li>Admin dashboard usage</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>🎯 Assignment Submission Checklist</h3>
+            <div class="success">
+                <strong>Final Checklist:</strong>
+            </div>
+            <ul>
+                <li>☐ All team members can access the GitHub repository</li>
+                <li>☐ Website is deployed and accessible via URL</li>
+                <li>☐ All features work as demonstrated</li>
+                <li>☐ Code is well-commented and organized</li>
+                <li>☐ README.md is complete and informative</li>
+                <li>☐ Each team member understands their contribution</li>
+                <li>☐ Project meets all assignment requirements</li>
+                <li>☐ Responsive design works on mobile devices</li>
+                <li>☐ No console errors in browser</li>
+                <li>☐ All forms validate correctly</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>🆘 Troubleshooting Common Issues</h3>
+            
+            <h4>GitHub Pages Not Loading</h4>
+            <ul>
+                <li>Check that index.html is in the root directory</li>
+                <li>Ensure all file paths are relative (no leading /)</li>
+                <li>Wait 5-10 minutes for changes to propagate</li>
+            </ul>
+
+            <h4>CSS/JS Not Loading</h4>
+            <ul>
+                <li>Check file paths in HTML files</li>
+                <li>Ensure files are committed to the repository</li>
+                <li>Clear browser cache</li>
+            </ul>
+
+            <h4>Forms Not Working</h4>
+            <ul>
+                <li>Check browser console for JavaScript errors</li>
+                <li>Verify all required scripts are loaded</li>
+                <li>Test in different browsers</li>
+            </ul>
+        </div>
+
+        <footer style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <p>Good luck with your deployment! 🚀</p>
+            <p><em>Remember: This guide covers the basics. For production systems, always implement proper security measures.</em></p>
+        </footer>
+    </div>
+</body>
+</html>
