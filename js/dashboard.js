@@ -1,8 +1,33 @@
+<<<<<<< HEAD
 // Enhanced Dashboard JavaScript with Clickable Tabs
+=======
+// Dashboard JavaScript
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 
 let currentStep = 1
 const totalSteps = 4
 
+<<<<<<< HEAD
+=======
+// Mock functions for demonstration purposes
+function showNotification(message, type) {
+  console.log(`Notification (${type}): ${message}`)
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString()
+}
+
+function formatCurrency(amount) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)
+}
+
+function generateId(prefix) {
+  return prefix + Math.random().toString(36).substring(2, 15)
+}
+
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 document.addEventListener("DOMContentLoaded", () => {
   initializeDashboard()
 })
@@ -23,10 +48,13 @@ function initializeDashboard() {
 
   // Update navigation state
   updateFormNavigation()
+<<<<<<< HEAD
   updateProgressIndicator()
 
   // Initialize step validation
   updateStepAccessibility()
+=======
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 }
 
 function showSection(sectionId) {
@@ -45,6 +73,7 @@ function showSection(sectionId) {
   event.target.closest(".nav-item").classList.add("active")
 }
 
+<<<<<<< HEAD
 // Enhanced step navigation with validation
 function goToStep(targetStep) {
   if (targetStep < 1 || targetStep > totalSteps) {
@@ -80,13 +109,43 @@ function goToStep(targetStep) {
 
   // Update progress indicator
   updateProgressIndicator()
+=======
+function changeStep(direction) {
+  const newStep = currentStep + direction
+
+  if (newStep < 1 || newStep > totalSteps) {
+    return
+  }
+
+  // Validate current step before proceeding
+  if (direction === 1 && !validateStep(currentStep)) {
+    return
+  }
+
+  // Hide current step
+  document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove("active")
+  document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove("active")
+
+  // Show new step
+  currentStep = newStep
+  document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add("active")
+  document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add("active")
+
+  // Mark completed steps
+  for (let i = 1; i < currentStep; i++) {
+    document.querySelector(`.progress-step[data-step="${i}"]`).classList.add("completed")
+  }
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 
   // Update navigation buttons
   updateFormNavigation()
 
+<<<<<<< HEAD
   // Update step accessibility - be more lenient
   updateStepAccessibility()
 
+=======
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
   // If moving to review step, populate review section
   if (currentStep === 4) {
     populateReviewSection()
@@ -94,6 +153,7 @@ function goToStep(targetStep) {
 
   // Save form data
   saveFormData()
+<<<<<<< HEAD
 
   // Smooth scroll to top of form
   const formContainer = document.querySelector(".form-container")
@@ -150,10 +210,17 @@ function validateCurrentStep() {
 
   // Fallback validation if FormValidator is not available
   const stepElement = document.querySelector(`.form-step[data-step="${currentStep}"]`)
+=======
+}
+
+function validateStep(step) {
+  const stepElement = document.querySelector(`.form-step[data-step="${step}"]`)
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
   const requiredFields = stepElement.querySelectorAll("[required]")
   let isValid = true
 
   requiredFields.forEach((field) => {
+<<<<<<< HEAD
     let hasValue = false
 
     if (field.type === "checkbox") {
@@ -165,6 +232,9 @@ function validateCurrentStep() {
     }
 
     if (!hasValue) {
+=======
+    if (!field.value.trim()) {
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
       field.classList.add("error")
       isValid = false
     } else {
@@ -179,6 +249,7 @@ function validateCurrentStep() {
   return isValid
 }
 
+<<<<<<< HEAD
 function updateProgressIndicator() {
   const progressSteps = document.querySelectorAll(".progress-step")
 
@@ -220,6 +291,8 @@ function updateStepAccessibility() {
   })
 }
 
+=======
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 function updateFormNavigation() {
   const prevBtn = document.getElementById("prevBtn")
   const nextBtn = document.getElementById("nextBtn")
@@ -241,6 +314,7 @@ function populateReviewSection() {
 
   // Personal Information Review
   const personalReview = document.getElementById("reviewPersonal")
+<<<<<<< HEAD
   if (personalReview) {
     personalReview.innerHTML = `
       <div class="review-item">
@@ -315,6 +389,72 @@ function populateReviewSection() {
       </div>
     `
   }
+=======
+  personalReview.innerHTML = `
+        <div class="review-item">
+            <span class="review-label">Name:</span>
+            <span class="review-value">${formData.firstName} ${formData.lastName}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Date of Birth:</span>
+            <span class="review-value">${formatDate(formData.dateOfBirth)}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Email:</span>
+            <span class="review-value">${formData.email}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Phone:</span>
+            <span class="review-value">${formData.phone}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Address:</span>
+            <span class="review-value">${formData.address}</span>
+        </div>
+    `
+
+  // Identity Review
+  const identityReview = document.getElementById("reviewIdentity")
+  identityReview.innerHTML = `
+        <div class="review-item">
+            <span class="review-label">ID Type:</span>
+            <span class="review-value">${formData.idType}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">ID Number:</span>
+            <span class="review-value">${formData.idNumber}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Issue Date:</span>
+            <span class="review-value">${formatDate(formData.issueDate)}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Expiry Date:</span>
+            <span class="review-value">${formatDate(formData.expiryDate)}</span>
+        </div>
+    `
+
+  // Financial Review
+  const financialReview = document.getElementById("reviewFinancial")
+  financialReview.innerHTML = `
+        <div class="review-item">
+            <span class="review-label">Employment:</span>
+            <span class="review-value">${formData.employmentStatus}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Annual Income:</span>
+            <span class="review-value">${formData.annualIncome}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Investment Experience:</span>
+            <span class="review-value">${formData.investmentExperience}</span>
+        </div>
+        <div class="review-item">
+            <span class="review-label">Planned Investment:</span>
+            <span class="review-value">${formatCurrency(formData.plannedInvestment)}</span>
+        </div>
+    `
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
 }
 
 function collectFormData() {
@@ -376,7 +516,11 @@ function handleKYCSubmission(event) {
   event.preventDefault()
 
   // Final validation
+<<<<<<< HEAD
   if (!validateCurrentStep()) {
+=======
+  if (!validateStep(4)) {
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
     return
   }
 
@@ -431,6 +575,11 @@ function handleKYCSubmission(event) {
         annualIncome: formData.annualIncome,
         sourceOfFunds: formData.sourceOfFunds,
         investmentExperience: formData.investmentExperience,
+<<<<<<< HEAD
+=======
+        riskTolerance: formData.riskTolerance,
+        investmentGoal: formData.investmentGoal,
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
         plannedInvestment: Number.parseInt(formData.plannedInvestment),
       },
     }
@@ -440,6 +589,12 @@ function handleKYCSubmission(event) {
     applications.push(application)
     localStorage.setItem("applications", JSON.stringify(applications))
 
+<<<<<<< HEAD
+=======
+    // Generate and simulate PDF sending
+    generatePDF(application)
+
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
     // Clear saved form data
     localStorage.removeItem(`formData_${userData.id}`)
 
@@ -455,6 +610,7 @@ function handleKYCSubmission(event) {
   }, 2000)
 }
 
+<<<<<<< HEAD
 // Utility functions
 function formatDate(dateString) {
   if (!dateString) return "N/A"
@@ -715,3 +871,21 @@ document.addEventListener("DOMContentLoaded", () => {
     loadStatusData()
   }, 100)
 })
+=======
+function generatePDF(application) {
+  // In a real application, this would generate and send a PDF
+  // For demo purposes, we'll just simulate it
+  console.log("Generating PDF for application:", application.id)
+
+  // Simulate sending to broker
+  setTimeout(() => {
+    showNotification(`PDF sent to ${getBrokerName(application.broker)}`, "info")
+  }, 1000)
+}
+
+function getBrokerName(brokerId) {
+  const brokers = JSON.parse(localStorage.getItem("brokers") || "[]")
+  const broker = brokers.find((b) => b.id === brokerId)
+  return broker ? broker.name : "Selected Broker"
+}
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
