@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYC Dashboard - RSE Portal</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="dashboard-container">
+<<<<<<< HEAD
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/rse-logo.png" alt="RSE Logo" class="sidebar-logo">
+                <div class="user-info">
+                    <h3 id="userName">John Doe</h3>
+                    <p>KYC Applicant</p>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="#" onclick="showSection('kyc-form')">
+                        <i class="fas fa-user-check"></i> 
+                        <span>Complete KYC</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="showSection('profile')">
+                        <i class="fas fa-user"></i> 
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="showSection('status')">
+                        <i class="fas fa-chart-bar"></i> 
+                        <span>Application Status</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> 
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+=======
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <h2>RSE KYC</h2>
+          <p id="userName">John Doe</p>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item active">
+            <a href="#" onclick="showSection('kyc-form')">
+              <i class="fas fa-user-check"></i> Complete KYC
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" onclick="showSection('profile')">
+              <i class="fas fa-user"></i> Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" onclick="showSection('status')">
+              <i class="fas fa-chart-bar"></i> Application Status
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="file:///D:/internership/rse_kyc_portal/index.html"
+              onclick="logout()"
+            >
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+>>>>>>> 25489bba4609c5662ce74ad0233036b567a67232
+
+        <main class="main-dashboard">
+            <header class="dashboard-header">
+                <div class="header-content">
+                    <h1>KYC Application Form</h1>
+                    <p>Complete your Know Your Customer verification to start investing</p>
+                </div>
+                
+                <!-- Enhanced Clickable Progress Indicator -->
+                <div class="progress-container">
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1" onclick="goToStep(1)">
+                            <div class="step-circle">
+                                <i class="fas fa-user"></i>
+                                <span class="step-number">1</span>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-title">Personal Info</span>
+                                <span class="step-desc">Basic details</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-step" data-step="2" onclick="goToStep(2)">
+                            <div class="step-circle">
+                                <i class="fas fa-id-card"></i>
+                                <span class="step-number">2</span>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-title">Identity</span>
+                                <span class="step-desc">Document verification</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-step" data-step="3" onclick="goToStep(3)">
+                            <div class="step-circle">
+                                <i class="fas fa-chart-line"></i>
+                                <span class="step-number">3</span>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-title">Financial Info</span>
+                                <span class="step-desc">Investment profile</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-step" data-step="4" onclick="goToStep(4)">
+                            <div class="step-circle">
+                                <i class="fas fa-check"></i>
+                                <span class="step-number">4</span>
+                            </div>
+                            <div class="step-info">
+                                <span class="step-title">Review</span>
+                                <span class="step-desc">Final submission</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="kyc-form" class="section active">
+                <div class="form-container">
+                    <!-- Error Summary -->
+                    <div id="errorSummary" class="error-summary hidden">
+                        <div class="error-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Please fix the following errors:</h4>
+                        </div>
+                        <ul id="errorList"></ul>
+                    </div>
+
+                    <form id="kycForm">
+                        <!-- Step 1: Personal Information -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-header">
+                                <h3><i class="fas fa-user"></i> Personal Information</h3>
+                                <p>Please provide your basic personal details</p>
+                            </div>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="firstName" name="firstName" required>
+                                        <div class="input-icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="firstName-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="lastName" name="lastName" required>
+                                        <div class="input-icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="lastName-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth *</label>
+                                    <div class="input-wrapper">
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                        <div class="input-icon">
+                                            <i class="fas fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="dateOfBirth-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nationality">Nationality *</label>
+                                    <div class="input-wrapper">
+                                        <select id="nationality" name="nationality" required>
+                                            <option value="">Select Nationality</option>
+                                            <option value="RW">Rwanda</option>
+                                            <option value="KE">Kenya</option>
+                                            <option value="UG">Uganda</option>
+                                            <option value="TZ">Tanzania</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-flag"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="nationality-error"></div>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="address">Residential Address *</label>
+                                    <div class="input-wrapper">
+                                        <textarea id="address" name="address" rows="3" required placeholder="Enter your full residential address"></textarea>
+                                        <div class="input-icon">
+                                            <i class="fas fa-home"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="address-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="phone" name="phone" required placeholder="+250 788 123 456">
+                                        <div class="input-icon">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="phone-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <div class="input-wrapper">
+                                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                                        <div class="input-icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="email-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Identity Verification -->
+                        <div class="form-step" data-step="2">
+                            <div class="step-header">
+                                <h3><i class="fas fa-id-card"></i> Identity Verification</h3>
+                                <p>Upload your identification documents for verification</p>
+                            </div>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="idType">ID Type *</label>
+                                    <div class="input-wrapper">
+                                        <select id="idType" name="idType" required>
+                                            <option value="">Select ID Type</option>
+                                            <option value="national_id">National ID</option>
+                                            <option value="passport">Passport</option>
+                                            <option value="driving_license">Driving License</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-id-card"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="idType-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="idNumber">ID Number *</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="idNumber" name="idNumber" required placeholder="Enter your ID number">
+                                        <div class="input-icon">
+                                            <i class="fas fa-hashtag"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="idNumber-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="issueDate">Issue Date *</label>
+                                    <div class="input-wrapper">
+                                        <input type="date" id="issueDate" name="issueDate" required>
+                                        <div class="input-icon">
+                                            <i class="fas fa-calendar-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="issueDate-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date *</label>
+                                    <div class="input-wrapper">
+                                        <input type="date" id="expiryDate" name="expiryDate" required>
+                                        <div class="input-icon">
+                                            <i class="fas fa-calendar-minus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="expiryDate-error"></div>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="idFrontUpload">Upload ID Front *</label>
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" id="idFrontUpload" name="idFrontUpload" accept="image/*,.pdf" required>
+                                        <div class="file-upload-area">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <span class="upload-text">Click to upload or drag and drop</span>
+                                            <span class="upload-hint">JPG, PNG, PDF (Max 5MB)</span>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="idFrontUpload-error"></div>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="idBackUpload">Upload ID Back *</label>
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" id="idBackUpload" name="idBackUpload" accept="image/*,.pdf" required>
+                                        <div class="file-upload-area">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <span class="upload-text">Click to upload or drag and drop</span>
+                                            <span class="upload-hint">JPG, PNG, PDF (Max 5MB)</span>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="idBackUpload-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Financial Information -->
+                        <div class="form-step" data-step="3">
+                            <div class="step-header">
+                                <h3><i class="fas fa-chart-line"></i> Financial Information</h3>
+                                <p>Tell us about your financial background and investment goals</p>
+                            </div>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="employmentStatus">Employment Status *</label>
+                                    <div class="input-wrapper">
+                                        <select id="employmentStatus" name="employmentStatus" required>
+                                            <option value="">Select Status</option>
+                                            <option value="employed">Employed</option>
+                                            <option value="self_employed">Self Employed</option>
+                                            <option value="unemployed">Unemployed</option>
+                                            <option value="retired">Retired</option>
+                                            <option value="student">Student</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="employmentStatus-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="employer">Employer/Company</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="employer" name="employer" placeholder="Company name">
+                                        <div class="input-icon">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="employer-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="annualIncome">Annual Income (RWF) *</label>
+                                    <div class="input-wrapper">
+                                        <select id="annualIncome" name="annualIncome" required>
+                                            <option value="">Select Range</option>
+                                            <option value="0-1000000">0 - 1,000,000</option>
+                                            <option value="1000000-5000000">1,000,000 - 5,000,000</option>
+                                            <option value="5000000-10000000">5,000,000 - 10,000,000</option>
+                                            <option value="10000000+">10,000,000+</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="annualIncome-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="sourceOfFunds">Source of Investment Funds *</label>
+                                    <div class="input-wrapper">
+                                        <select id="sourceOfFunds" name="sourceOfFunds" required>
+                                            <option value="">Select Source</option>
+                                            <option value="salary">Salary/Employment</option>
+                                            <option value="business">Business Income</option>
+                                            <option value="investments">Investment Returns</option>
+                                            <option value="inheritance">Inheritance</option>
+                                            <option value="savings">Personal Savings</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-piggy-bank"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="sourceOfFunds-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="investmentExperience">Investment Experience *</label>
+                                    <div class="input-wrapper">
+                                        <select id="investmentExperience" name="investmentExperience" required>
+                                            <option value="">Select Experience</option>
+                                            <option value="beginner">Beginner (0-1 years)</option>
+                                            <option value="intermediate">Intermediate (1-5 years)</option>
+                                            <option value="experienced">Experienced (5+ years)</option>
+                                        </select>
+                                        <div class="input-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="investmentExperience-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="plannedInvestment">Planned Investment Amount (RWF) *</label>
+                                    <div class="input-wrapper">
+                                        <input type="number" id="plannedInvestment" name="plannedInvestment" min="100000" required placeholder="100,000">
+                                        <div class="input-icon">
+                                            <i class="fas fa-calculator"></i>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="plannedInvestment-error"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Review and Submit -->
+                        <div class="form-step" data-step="4">
+                            <div class="step-header">
+                                <h3><i class="fas fa-check"></i> Review Your Information</h3>
+                                <p>Please review all information before submitting your application</p>
+                            </div>
+                            
+                            <div class="review-section">
+                                <div class="review-card">
+                                    <h4><i class="fas fa-user"></i> Personal Information</h4>
+                                    <div id="reviewPersonal"></div>
+                                </div>
+                                
+                                <div class="review-card">
+                                    <h4><i class="fas fa-id-card"></i> Identity Verification</h4>
+                                    <div id="reviewIdentity"></div>
+                                </div>
+                                
+                                <div class="review-card">
+                                    <h4><i class="fas fa-chart-line"></i> Financial Information</h4>
+                                    <div id="reviewFinancial"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="brokerSelect">Select Broker *</label>
+                                <div class="input-wrapper">
+                                    <select id="brokerSelect" name="brokerSelect" required>
+                                        <option value="">Select a Broker</option>
+                                        <option value="broker1">BK Capital Rwanda</option>
+                                        <option value="broker2">Rwanda Investment Group</option>
+                                        <option value="broker3">East Africa Securities</option>
+                                        <option value="broker4">Capital Markets Rwanda</option>
+                                    </select>
+                                    <div class="input-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="brokerSelect-error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="termsAccept" name="termsAccept" required>
+                                    <span class="checkmark"></span>
+                                    I accept the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                                </label>
+                                <div class="error-message" id="termsAccept-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" id="prevBtn" class="btn btn-outline" onclick="changeStep(-1)" style="display: none;">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" id="nextBtn" class="btn btn-primary" onclick="changeStep(1)">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">
+                                <i class="fas fa-paper-plane"></i> Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Other sections -->
+            <!-- Profile Section -->
+<div id="profile" class="section">
+  <div class="section-content">
+    <div class="profile-header">
+      <h2><i class="fas fa-user-circle"></i> Profile Management</h2>
+      <p>Manage your personal information and account settings</p>
+    </div>
+    
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <div class="avatar-circle">
+            <i class="fas fa-user"></i>
+          </div>
+          <button class="btn btn-outline btn-sm">Change Photo</button>
+        </div>
+        
+        <div class="profile-info">
+          <h3 id="profileName">John Doe</h3>
+          <p id="profileEmail">john.doe@email.com</p>
+          <span class="profile-status active">Active Account</span>
+        </div>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-number" id="memberSince">Jan 2024</span>
+            <span class="stat-label">Member Since</span>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-number" id="applicationsCount">1</span>
+            <span class="stat-label">Applications</span>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-shield-check"></i>
+          </div>
+          <div class="stat-details">
+            <span class="stat-number" id="verificationStatus">Pending</span>
+            <span class="stat-label">KYC Status</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="profile-sections">
+      <div class="profile-section">
+        <h4><i class="fas fa-user-edit"></i> Personal Information</h4>
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="profileFirstName">First Name</label>
+              <input type="text" id="profileFirstName" value="John">
+            </div>
+            <div class="form-group">
+              <label for="profileLastName">Last Name</label>
+              <input type="text" id="profileLastName" value="Doe">
+            </div>
+            <div class="form-group">
+              <label for="profilePhone">Phone Number</label>
+              <input type="tel" id="profilePhone" value="+250788123456">
+            </div>
+            <div class="form-group">
+              <label for="profileAddress">Address</label>
+              <textarea id="profileAddress" rows="3">KG 123 St, Kigali, Rwanda</textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+      </div>
+      
+      <div class="profile-section">
+        <h4><i class="fas fa-key"></i> Security Settings</h4>
+        <div class="security-options">
+          <div class="security-item">
+            <div class="security-info">
+              <h5>Password</h5>
+              <p>Last changed 30 days ago</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showChangePassword()">Change Password</button>
+          </div>
+          
+          <div class="security-item">
+            <div class="security-info">
+              <h5>Two-Factor Authentication</h5>
+              <p>Add an extra layer of security</p>
+            </div>
+            <button class="btn btn-outline btn-sm">Enable 2FA</button>
+          </div>
+          
+          <div class="security-item">
+            <div class="security-info">
+              <h5>Login Sessions</h5>
+              <p>Manage your active sessions</p>
+            </div>
+            <button class="btn btn-outline btn-sm">View Sessions</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="profile-section">
+        <h4><i class="fas fa-bell"></i> Notification Preferences</h4>
+        <div class="notification-settings">
+          <label class="checkbox-label">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Email notifications for application updates
+          </label>
+          
+          <label class="checkbox-label">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            SMS notifications for important alerts
+          </label>
+          
+          <label class="checkbox-label">
+            <input type="checkbox">
+            <span class="checkmark"></span>
+            Marketing and promotional emails
+          </label>
+          
+          <label class="checkbox-label">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Security alerts and login notifications
+          </label>
+        </div>
+        
+        <button class="btn btn-primary">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Application Status Section -->
+<div id="status" class="section">
+  <div class="section-content">
+    <div class="status-header">
+      <h2><i class="fas fa-chart-line"></i> Application Status</h2>
+      <p>Track your KYC application progress and view detailed information</p>
+    </div>
+    
+    <div class="status-overview">
+      <div class="status-card current">
+        <div class="status-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="status-content">
+          <h3>Application Under Review</h3>
+          <p>Your KYC application is currently being processed by our team</p>
+          <div class="status-meta">
+            <span class="application-id">Application ID: <strong id="currentAppId">APP001</strong></span>
+            <span class="submission-date">Submitted: <strong id="submissionDate">January 15, 2024</strong></span>
+          </div>
+        </div>
+        <div class="status-badge pending">
+          <i class="fas fa-hourglass-half"></i>
+          Pending Review
+        </div>
+      </div>
+    </div>
+    
+    <div class="status-timeline">
+      <h4><i class="fas fa-history"></i> Application Timeline</h4>
+      <div class="timeline">
+        <div class="timeline-item completed">
+          <div class="timeline-marker">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="timeline-content">
+            <h5>Application Submitted</h5>
+            <p>Your KYC application has been successfully submitted</p>
+            <span class="timeline-date">January 15, 2024 - 10:30 AM</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item completed">
+          <div class="timeline-marker">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="timeline-content">
+            <h5>Documents Received</h5>
+            <p>All required documents have been received and verified</p>
+            <span class="timeline-date">January 15, 2024 - 10:35 AM</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item active">
+          <div class="timeline-marker">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="timeline-content">
+            <h5>Under Review</h5>
+            <p>Our compliance team is reviewing your application</p>
+            <span class="timeline-date">In Progress</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item pending">
+          <div class="timeline-marker">
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+          <div class="timeline-content">
+            <h5>Final Approval</h5>
+            <p>Final approval and account activation</p>
+            <span class="timeline-date">Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="status-details">
+      <div class="detail-grid">
+        <div class="detail-card">
+          <h4><i class="fas fa-user"></i> Personal Information</h4>
+          <div class="detail-status">
+            <span class="status-indicator verified">
+              <i class="fas fa-check-circle"></i>
+              Verified
+            </span>
+          </div>
+          <div class="detail-items">
+            <div class="detail-item">
+              <span class="detail-label">Full Name:</span>
+              <span class="detail-value" id="statusName">John Doe</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Email:</span>
+              <span class="detail-value" id="statusEmail">john.doe@email.com</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Phone:</span>
+              <span class="detail-value" id="statusPhone">+250788123456</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-card">
+          <h4><i class="fas fa-id-card"></i> Identity Verification</h4>
+          <div class="detail-status">
+            <span class="status-indicator verified">
+              <i class="fas fa-check-circle"></i>
+              Verified
+            </span>
+          </div>
+          <div class="detail-items">
+            <div class="detail-item">
+              <span class="detail-label">ID Type:</span>
+              <span class="detail-value">National ID</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">ID Number:</span>
+              <span class="detail-value">****-****-****-5678</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Documents:</span>
+              <span class="detail-value">2 files uploaded</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-card">
+          <h4><i class="fas fa-chart-line"></i> Financial Information</h4>
+          <div class="detail-status">
+            <span class="status-indicator pending">
+              <i class="fas fa-clock"></i>
+              Under Review
+            </span>
+          </div>
+          <div class="detail-items">
+            <div class="detail-item">
+              <span class="detail-label">Employment:</span>
+              <span class="detail-value">Employed</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Experience:</span>
+              <span class="detail-value">Intermediate</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Investment Amount:</span>
+              <span class="detail-value">2,000,000 RWF</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="detail-card">
+          <h4><i class="fas fa-handshake"></i> Broker Selection</h4>
+          <div class="detail-status">
+            <span class="status-indicator verified">
+              <i class="fas fa-check-circle"></i>
+              Confirmed
+            </span>
+          </div>
+          <div class="detail-items">
+            <div class="detail-item">
+              <span class="detail-label">Selected Broker:</span>
+              <span class="detail-value">BK Capital Rwanda</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Contact:</span>
+              <span class="detail-value">contact@bkcapital.rw</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Phone:</span>
+              <span class="detail-value">+250788111222</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="status-actions">
+      <h4><i class="fas fa-tools"></i> Available Actions</h4>
+      <div class="action-grid">
+        <button class="btn btn-outline" onclick="downloadApplicationPDF()">
+          <i class="fas fa-download"></i>
+          Download Application PDF
+        </button>
+        
+        <button class="btn btn-outline" onclick="contactSupport()">
+          <i class="fas fa-headset"></i>
+          Contact Support
+        </button>
+        
+        <button class="btn btn-outline" onclick="updateApplication()">
+          <i class="fas fa-edit"></i>
+          Update Information
+        </button>
+        
+        <button class="btn btn-outline" onclick="withdrawApplication()">
+          <i class="fas fa-times-circle"></i>
+          Withdraw Application
+        </button>
+      </div>
+    </div>
+    
+    <div class="status-help">
+      <div class="help-card">
+        <h4><i class="fas fa-question-circle"></i> Need Help?</h4>
+        <p>If you have any questions about your application status or need assistance, our support team is here to help.</p>
+        <div class="help-contacts">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>support@rse-kyc.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+250 788 123 456</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <span>Mon-Fri: 8:00 AM - 6:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/kyc-form.js"></script>
+    <script src="js/form-validation.js"></script>
+</body>
+</html>
