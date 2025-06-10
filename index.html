@@ -3,108 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSE KYC Portal</title>
+    <title>RSE KYC Portal - Rwanda Stock Exchange</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/auth.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
     <div class="container">
         <header class="header">
-            <div class="logo">
-                <h1>RSE KYC Portal</h1>
-                <p>Secure Investment Onboarding</p>
+            <div class="logo-container">
+                <img src="assets/rse-logo.png" alt="Rwanda Stock Exchange" class="logo-img">
+                <div class="logo-text">
+                    <h1>RSE KYC Portal</h1>
+                    <p>Rwanda Stock Exchange - Secure Investment Onboarding</p>
+                </div>
             </div>
         </header>
 
         <main class="main-content">
-            <div class="welcome-section">
-                <h2>Welcome to RSE Capital Investment Platform</h2>
-                <p>Complete your KYC process to start investing with confidence</p>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="showLogin()">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSignup()">
-                        <i class="fas fa-user-plus"></i> Sign Up
-                    </button>
+            <div class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2 class="hero-title">
+                            <span class="highlight">Secure</span> Your Investment Future
+                        </h2>
+                        <p class="hero-description">
+                            Complete your KYC process with Rwanda Stock Exchange and unlock access to premier investment opportunities in Rwanda's growing capital markets.
+                        </p>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-primary btn-large" onclick="showLogin()">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Login to Portal</span>
+                            </button>
+                            <button class="btn btn-outline btn-large" onclick="showSignup()">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Create Account</span>
+                            </button>
+                        </div>
+
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Bank-Level Security</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fas fa-clock"></i>
+                                <span>5-Minute Setup</span>
+                            </div>
+                            <div class="trust-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Instant Approval</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <div class="image-container">
+                            <img src="assets/rse-office.jpeg" alt="RSE Office" class="office-img">
+                            <div class="image-overlay">
+                                <div class="stats-card">
+                                    <div class="stat">
+                                        <span class="stat-number">1000+</span>
+                                        <span class="stat-label">Active Investors</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-number">10</span>
+                                        <span class="stat-label">Listed Companies</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Secure Process</h3>
-                    <p>Bank-level security for your information</p>
+            <div class="features-section">
+                <div class="section-header">
+                    <h3>Why Choose RSE KYC Portal?</h3>
+                    <p>Experience the most advanced and secure KYC process in East Africa</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Quick Setup</h3>
-                    <p>Complete KYC in under 10 minutes</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Advanced Security</h4>
+                        <p>Military-grade encryption and multi-factor authentication protect your sensitive information</p>
+                        <div class="feature-highlight">256-bit SSL Encryption</div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Lightning Fast</h4>
+                        <p>Complete your entire KYC process in under 5 minutes with our streamlined interface</p>
+                        <div class="feature-highlight">5-Minute Process</div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Instant Access</h4>
+                        <p>Get immediate access to Rwanda's premier investment opportunities upon approval</p>
+                        <div class="feature-highlight">Real-time Approval</div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Mobile Optimized</h4>
+                        <p>Complete your KYC on any device with our responsive, mobile-first design</p>
+                        <div class="feature-highlight">Any Device, Anywhere</div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p>Our dedicated support team is available around the clock to assist you</p>
+                        <div class="feature-highlight">Always Available</div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Regulatory Compliant</h4>
+                        <p>Fully compliant with Rwanda's financial regulations and international standards</p>
+                        <div class="feature-highlight">CMA Approved</div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Start Investing</h3>
-                    <p>Access investment opportunities immediately</p>
+            </div>
+
+            <div class="process-section">
+                <div class="section-header">
+                    <h3>Simple 4-Step Process</h3>
+                    <p>Get started with your investment journey in minutes</p>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="step" data-aos="fade-right" data-aos-delay="100">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Create Account</h4>
+                            <p>Sign up with your email and create a secure password</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-aos="fade-right" data-aos-delay="200">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Personal Information</h4>
+                            <p>Provide your basic personal and contact details</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-aos="fade-right" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Identity Verification</h4>
+                            <p>Upload your ID documents for verification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-aos="fade-right" data-aos-delay="400">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Start Investing</h4>
+                            <p>Get approved and begin your investment journey</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Login Modal -->
+    <!-- Enhanced Login Modal -->
     <div id="loginModal" class="modal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login to Your Account</h2>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your RSE KYC account</p>
+                <button class="close-btn" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span class="btn-text">Sign In</span>
+                    <div class="btn-loader"></div>
+                </button>
             </form>
-            <p class="modal-footer">
-                Don't have an account? <a href="#" onclick="closeModal('loginModal'); showSignup()">Sign up here</a>
-            </p>
+            
+            <div class="modal-footer">
+                <p>Don't have an account? 
+                    <a href="#" onclick="closeModal('loginModal'); showSignup()">Create one here</a>
+                </p>
+            </div>
         </div>
     </div>
 
-    <!-- Signup Modal -->
+    <!-- Enhanced Signup Modal -->
     <div id="signupModal" class="modal">
+        <div class="modal-backdrop"></div>
         <div class="modal-content">
-            <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Create New Account</h2>
+            <div class="modal-header">
+                <h2>Join RSE Today</h2>
+                <p>Create your account and start investing</p>
+                <button class="close-btn" onclick="closeModal('signupModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
             <form id="signupForm" onsubmit="handleSignup(event)">
                 <div class="form-group">
                     <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="signupName" placeholder="Enter your full name" required>
+                    </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <span class="strength-text">Password strength</span>
+                    </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Create Account</button>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span class="btn-text">Create Account</span>
+                    <div class="btn-loader"></div>
+                </button>
             </form>
-            <p class="modal-footer">
-                Already have an account? <a href="#" onclick="closeModal('signupModal'); showLogin()">Login here</a>
-            </p>
+            
+            <div class="modal-footer">
+                <p>Already have an account? 
+                    <a href="#" onclick="closeModal('signupModal'); showLogin()">Sign in here</a>
+                </p>
+            </div>
         </div>
     </div>
 
     <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

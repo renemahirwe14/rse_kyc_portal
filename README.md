@@ -248,6 +248,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Built with ❤️ by the RSE UR/MKU Interns Team**
+**Built with ❤️ by the RSE Academic Interns May Intake**
 
-*Last updated: May 2025
+Rene MAHIRWE - University of Rwanda
+Nadine UWASE - University of Rwanda 
+Belyse MAHORO - Mount Kigali University
+Yvonne Kwizera - Mount Kigali University
+
+
