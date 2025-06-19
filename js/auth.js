@@ -185,7 +185,7 @@ function clearInputError(input) {
   }
 }
 
-function checkAuthState() {
+async function checkAuthState() {
   const currentUser = localStorage.getItem("currentUser")
   if (currentUser && (window.location.pathname.endsWith("index.html") || window.location.pathname === "/")) {
     // User is logged in and on landing page, redirect to dashboard
@@ -232,18 +232,16 @@ function closeModal(modalId) {
   }
 }
 
-function handleLogin(event) {
+async function handleLogin(event) {
   event.preventDefault()
 
   const email = document.getElementById("loginEmail").value.trim()
   const password = document.getElementById("loginPassword").value
 
-  // Validate inputs
   const emailInput = document.getElementById("loginEmail")
   const passwordInput = document.getElementById("loginPassword")
 
   let isValid = true
-
   if (!validateInput(emailInput)) isValid = false
   if (!validateInput(passwordInput)) isValid = false
 
@@ -252,36 +250,45 @@ function handleLogin(event) {
   const submitBtn = event.target.querySelector('button[type="submit"]')
   setButtonLoading(submitBtn, true)
 
-  // Simulate API call
-  setTimeout(() => {
-    // Check credentials
-    const users = JSON.parse(localStorage.getItem("users") || "[]")
-    const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase())
+  try {
+    const response = await fetch("api/auth.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "login",
+        email: email,
+        password: password,
+      }),
+    })
 
-    if (user) {
-      // Successful login
+    const data = await response.json()
+
+    if (data.success) {
       const userData = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
+        id: data.user.id,
+        name: data.user.name,
+        email: data.user.email,
         loginTime: new Date().toISOString(),
       }
-
       localStorage.setItem("currentUser", JSON.stringify(userData))
-
       showNotification("Login successful! Redirecting...", "success")
-
       setTimeout(() => {
         window.location.href = "dashboard.html"
       }, 1500)
     } else {
-      showNotification("Invalid email or password. Please try again.", "error")
+      showNotification(data.message || "Invalid email or password. Please try again.", "error")
       setButtonLoading(submitBtn, false)
     }
-  }, 1500)
+  } catch (error) {
+    console.error("Error during login:", error)
+    showNotification("An error occurred during login. Please try again.", "error")
+    setButtonLoading(submitBtn, false)
+  }
 }
 
-function handleSignup(event) {
+async function handleSignup(event) {
   event.preventDefault()
 
   const name = document.getElementById("signupName").value.trim()
@@ -290,7 +297,6 @@ function handleSignup(event) {
   const confirmPassword = document.getElementById("confirmPassword").value
   const agreeTerms = document.getElementById("agreeTerms").checked
 
-  // Validate all inputs
   const inputs = [
     document.getElementById("signupName"),
     document.getElementById("signupEmail"),
@@ -313,46 +319,43 @@ function handleSignup(event) {
   const submitBtn = event.target.querySelector('button[type="submit"]')
   setButtonLoading(submitBtn, true)
 
-  // Simulate API call
-  setTimeout(() => {
-    // Check if user already exists
-    const users = JSON.parse(localStorage.getItem("users") || "[]")
-    const existingUser = users.find((u) => u.email.toLowerCase() === email.toLowerCase())
+  try {
+    const response = await fetch("api/auth.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "signup",
+        name: name,
+        email: email,
+        password: password,
+      }),
+    })
 
-    if (existingUser) {
-      showNotification("An account with this email already exists", "error")
+    const data = await response.json()
+
+    if (data.success) {
+      const userData = {
+        id: data.user.id,
+        name: data.user.name,
+        email: data.user.email,
+        loginTime: new Date().toISOString(),
+      }
+      localStorage.setItem("currentUser", JSON.stringify(userData))
+      showNotification("Account created successfully! Redirecting...", "success")
+      setTimeout(() => {
+        window.location.href = "dashboard.html"
+      }, 1500)
+    } else {
+      showNotification(data.message || "An error occurred during signup.", "error")
       setButtonLoading(submitBtn, false)
-      return
     }
-
-    // Create new user
-    const newUser = {
-      id: generateId("USER"),
-      name: name,
-      email: email,
-      registrationDate: new Date().toISOString().split("T")[0],
-      status: "active",
-    }
-
-    users.push(newUser)
-    localStorage.setItem("users", JSON.stringify(users))
-
-    // Auto login
-    const userData = {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      loginTime: new Date().toISOString(),
-    }
-
-    localStorage.setItem("currentUser", JSON.stringify(userData))
-
-    showNotification("Account created successfully! Redirecting...", "success")
-
-    setTimeout(() => {
-      window.location.href = "dashboard.html"
-    }, 1500)
-  }, 2000)
+  } catch (error) {
+    console.error("Error during signup:", error)
+    showNotification("An error occurred during signup. Please try again.", "error")
+    setButtonLoading(submitBtn, false)
+  }
 }
 
 function setButtonLoading(button, loading) {
@@ -380,9 +383,10 @@ function logout() {
   }, 1500)
 }
 
-function generateId(prefix = "ID") {
-  return prefix + "_" + Date.now().toString(36) + Math.random().toString(36).substr(2, 9)
-}
+// This function is no longer needed for generating IDs as PHP handles it
+// function generateId(prefix = "ID") {
+//   return prefix + "_" + Date.now().toString(36) + Math.random().toString(36).substr(2, 9)
+// }
 
 function showNotification(message, type = "info") {
   const notification = document.createElement("div")
