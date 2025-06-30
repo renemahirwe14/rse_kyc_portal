@@ -248,6 +248,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Built with ❤️ by the RSE KYC Development Team**
+**Built with ❤️ by the RSE BIT Interns Team**
 
-*Last updated: January 2024*
+*Last updated: June 2025*
