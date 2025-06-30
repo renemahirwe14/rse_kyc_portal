@@ -20,7 +20,11 @@
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(13, 138, 62, 0.1), rgba(76, 175, 80, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(13, 138, 62, 0.1),
+    rgba(76, 175, 80, 0.05)
+  );
   animation: float 6s ease-in-out infinite;
 }
 
